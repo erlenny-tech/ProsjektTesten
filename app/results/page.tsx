@@ -8,6 +8,7 @@ import { MockAnalysisProvider } from '@/lib/ai';
 import { ADVISOR_PROFILES, PERSONAS } from '@/lib/data';
 import { runSimulation } from '@/lib/simulation';
 import { RuleSet, SimulationResult } from '@/lib/types';
+import { getSavedSimulationResult } from '@/lib/storage';
 
 const fallbackRules: RuleSet = {
   oppfolgingsplanUke: 4,
@@ -24,9 +25,9 @@ export default function ResultsPage() {
   const [analysis, setAnalysis] = useState('Laster analyse ...');
 
   useEffect(() => {
-    const saved = window.localStorage.getItem('simlab-result');
+    const saved = getSavedSimulationResult();
     if (saved) {
-      setResult(JSON.parse(saved));
+      setResult(saved);
       return;
     }
 

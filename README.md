@@ -78,6 +78,8 @@ Ingen database trengs for denne MVP-en.
 - `lib/data.ts` – personaer og veilederprofiler
 - `lib/simulation.ts` – simuleringsmotor
 - `lib/ai.ts` – mock analyse-provider + grensesnitt for fremtidig AI-integrasjon
+- `lib/storage.ts` – localStorage-helpers for robust state-håndtering
+- `app/api/analyze/route.ts` – placeholder-API for fremtidig OpenAI-kobling
 - `components/ResultsCharts.tsx` – Recharts-visualiseringer
 
 ## Fremtidig AI-integrasjon (OpenAI)

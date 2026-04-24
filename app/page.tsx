@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { ADVISOR_PROFILES, PERSONAS } from '@/lib/data';
 import { runSimulation } from '@/lib/simulation';
+import { saveSimulationState } from '@/lib/storage';
 import { ActivityDuty, RuleSet } from '@/lib/types';
 import { RuleSlider } from '@/components/RuleSlider';
 
@@ -29,9 +30,7 @@ export default function HomePage() {
   const preview = useMemo(() => runSimulation(PERSONAS, rules, selectedAdvisor), [rules, selectedAdvisor]);
 
   const saveAndNavigate = () => {
-    if (typeof window === 'undefined') return;
-    window.localStorage.setItem('simlab-result', JSON.stringify(preview));
-    window.localStorage.setItem('simlab-rules', JSON.stringify(rules));
+    saveSimulationState(preview, rules);
   };
 
   const setRuleValue = <K extends keyof RuleSet>(key: K, value: RuleSet[K]) => {
